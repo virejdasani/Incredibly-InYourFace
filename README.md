@@ -1,4 +1,4 @@
-# [Incredibly In Your Face](https://marketplace.visualstudio.com/items?itemName=VirejDasani.in-your-face)
+# [Incredibly In Your Face](https://marketplace.visualstudio.com/items?itemName=VirejDasani.incredibly-in-your-face)
 
 <!-- ## Watch how I made this extension on YouTube [here](https://www.youtube.com/watch?v=SGFNhz91yNQ) -->
 
