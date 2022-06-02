@@ -1,4 +1,4 @@
-# [In Your Face](https://marketplace.visualstudio.com/items?itemName=VirejDasani.in-your-face)
+# [Incredibly In Your Face](https://marketplace.visualstudio.com/items?itemName=VirejDasani.incredibly-in-your-face)
 
 <!-- ## Watch how I made this extension on YouTube [here](https://www.youtube.com/watch?v=SGFNhz91yNQ) -->
 
@@ -18,6 +18,8 @@ Incredibly In Your Face, shows you Incredible 'Uncanny Faces' that correlate to 
 ![Loading...](https://github.com/virejdasani/Incredibly-InYourFace/blob/main/assets/Preview-Vid.gif?raw=true)
 
 <!-- - Check it out on YouTube [here](https://www.youtube.com/watch?v=BuejUOFOodw) -->
+
+Check out [In Your Face](https://github.com/virejdasani/InYourFace/) which is based on doom 'Ouch Faces'
 
 ---
 
