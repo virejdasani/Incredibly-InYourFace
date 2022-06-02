@@ -15,7 +15,7 @@ Incredibly In Your Face, shows you Incredible 'Uncanny Faces' that correlate to 
 
 ![Loading...](https://raw.githubusercontent.com/virejdasani/Incredibly-InYourFace/main/assets/smallBanner.png)
 
-![Loading...](https://raw.githubusercontent.com/virejdasani/Incredibly-InYourFace/main/assets/PreviewVid.mp4)
+![Loading...](https://github.com/virejdasani/Incredibly-InYourFace/blob/main/assets/Preview-Vid.gif?raw=true)
 
 <!-- - Check it out on YouTube [here](https://www.youtube.com/watch?v=BuejUOFOodw) -->
 
