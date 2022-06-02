@@ -1,0 +1,86 @@
+{
+  "name": "incredibly-in-your-face",
+  "displayName": "Incredibly In Your Face",
+  "description": "In Your Face, shows you Incredible 'Uncanny Faces' that correlate to the number of errors in your code!",
+  "version": "1.0.0",
+  "publisher": "VirejDasani",
+  "homepage": "https://github.com/virejdasani",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/virejdasani/IncrediblyInYourFace"
+  },
+  "engines": {
+    "vscode": "^1.61.0"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#191919",
+    "theme": "dark"
+  },
+  "keywords": [
+    "in your face",
+    "visualization",
+    "incredible",
+    "ouch",
+    "face",
+    "errors",
+    "error lens",
+    "error count"
+  ],
+  "__metadata": {
+    "publisherDisplayName": "VirejDasani"
+  },
+  "activationEvents": [
+    "onCommand:in-your-face.openview.focus",
+    "onView:in-your-face.openview"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [{
+        "id": "custom-activitybar",
+        "title": "Incredibly In Your Face",
+        "icon": "assets/logo_bito.svg"
+      }]
+    },
+    "views": {
+      "custom-activitybar": [{
+        "type": "webview",
+        "id": "in-your-face.openview",
+        "name": "In Your Face",
+        "contextualTitle": "In Your Face"
+      }]
+    },
+    "commands": [{
+      "command": "in-your-face.openview.focus",
+      "category": "In Your Face",
+      "title": "Open Sidebar",
+      "icon": "$(clear-all)"
+    }]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.61.0",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.1",
+    "typescript": "^4.4.3",
+    "@vscode/test-electron": "^1.6.2"
+  }
+}
