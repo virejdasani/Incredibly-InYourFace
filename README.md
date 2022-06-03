@@ -11,7 +11,7 @@
 <!-- [Installs](https://vsmarketplacebadge.apphb.com/installs/VirejDasani.hydroxy.svg) -->
 
 
-Incredibly In Your Face, is a VSCode extension that shows you Incredible 'Uncanny Faces' that correlate to the number of errors in your code!
+Incredibly In Your Face, is a VSCode extension that shows you Mr. Incredibles 'Uncanny Faces' that correlate to the number of errors in your code!
 
 ![Loading...](https://raw.githubusercontent.com/virejdasani/Incredibly-InYourFace/main/assets/smallBanner.png)
 
