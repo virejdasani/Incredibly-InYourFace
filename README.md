@@ -15,7 +15,7 @@ Incredibly In Your Face, is a VSCode extension that shows you Mr. Incredibles 'U
 
 ![Loading...](https://raw.githubusercontent.com/virejdasani/Incredibly-InYourFace/main/assets/smallBanner.png)
 
-![Loading...](https://github.com/virejdasani/Incredibly-InYourFace/blob/main/assets/Preview-Vid.gif?raw=true)
+https://user-images.githubusercontent.com/7763597/171986744-a05af686-649a-4157-84d4-c3fbec649a2b.mp4
 
 <!-- - Check it out on YouTube [here](https://www.youtube.com/watch?v=BuejUOFOodw) -->
 
