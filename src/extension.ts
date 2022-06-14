@@ -280,12 +280,6 @@ function getHtml(doomFace: any) {
       <img class="doomFaces" src="${doomFace}" alt="" >
       <h1 id="errorNum">${getNumErrors() + " errors"}</h1>
 			</section>
-
-      <h4 style="position: absolute; bottom: 14px;">Developed by <a href="https://youtube.com/virej">Virej</a></h4>
-      <h4 style="position: absolute; bottom: 0;">Check out <a href="https://www.youtube.com/watch?v=SGFNhz91yNQ">how I made this extension</a>!</h4>
-
-      <script>
-      </script>
       </body>
 
 		</html>
