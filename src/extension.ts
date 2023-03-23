@@ -204,12 +204,22 @@ class CustomSidebarViewProvider implements vscode.WebviewViewProvider {
       let errors = getNumErrors();
       if (errors === 0) {
         webviewView.webview.html = this.getHtmlContent0(webviewView.webview);
-      } else if (errors < 5) {
+      } else if (errors < 2) {
         webviewView.webview.html = this.getHtmlContent1(webviewView.webview);
-      } else if (errors < 10) {
+      } else if (errors < 5) {
         webviewView.webview.html = this.getHtmlContent2(webviewView.webview);
-      } else {
+      } else if (errors < 8) {
         webviewView.webview.html = this.getHtmlContent3(webviewView.webview);
+      } else if (errors < 10) {
+        webviewView.webview.html = this.getHtmlContent4(webviewView.webview);
+      } else if (errors < 13) {
+        webviewView.webview.html = this.getHtmlContent5(webviewView.webview);
+      } else if (errors < 16) {
+        webviewView.webview.html = this.getHtmlContent6(webviewView.webview);
+      } else if (errors < 20) {
+        webviewView.webview.html = this.getHtmlContent7(webviewView.webview);
+      } else {
+        webviewView.webview.html = this.getHtmlContent7(webviewView.webview);
       }
     }, 1000);
   }
@@ -264,6 +274,58 @@ class CustomSidebarViewProvider implements vscode.WebviewViewProvider {
     );
 
     return getHtml(face3);
+  }
+
+  // This is doom face 4
+  private getHtmlContent4(webview: vscode.Webview): string {
+    const stylesheetUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
+    );
+
+    const face4 = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible4.png")
+    );
+
+    return getHtml(face4);
+  }
+
+  // This is doom face 5
+  private getHtmlContent5(webview: vscode.Webview): string {
+    const stylesheetUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
+    );
+
+    const face5 = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible5.png")
+    );
+
+    return getHtml(face5);
+  }
+
+  // This is doom face 6
+  private getHtmlContent6(webview: vscode.Webview): string {
+    const stylesheetUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
+    );
+
+    const face6 = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible6.png")
+    );
+
+    return getHtml(face6);
+  }
+
+  // This is doom face 7
+  private getHtmlContent7(webview: vscode.Webview): string {
+    const stylesheetUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
+    );
+
+    const face7 = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible7.png")
+    );
+
+    return getHtml(face7);
   }
 }
 
