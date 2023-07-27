@@ -289,17 +289,18 @@ function getHtml(incredibleErrorFace: any, incredibleWarningFace:any) {
 }
 
 // function to get the number of errors and warnings in the open file
-function getNumErrAndWarn(): any {
+function getNumErrAndWarn(): number[] {
   const activeTextEditor: vscode.TextEditor | undefined =
     vscode.window.activeTextEditor;
+    let numErrors = 0;
+    let numWarnings = 0;
+    let numErrandWarn:number[] = [];
   if (!activeTextEditor) {
-    return 0;
+    numErrandWarn[0] = numErrors;
+    numErrandWarn[1] = numWarnings;
+    return numErrandWarn;
   }
   const document: vscode.TextDocument = activeTextEditor.document;
-
-  let numErrors = 0;
-  let numWarnings = 0;
-
   let aggregatedDiagnostics: any = {};
   let diagnostic: vscode.Diagnostic;
 
@@ -332,7 +333,7 @@ function getNumErrAndWarn(): any {
     }
   }
 
-  let numErrandWarn:number[] = [];
+  
   numErrandWarn[0] = numErrors;
   numErrandWarn[1] = numWarnings;
 
