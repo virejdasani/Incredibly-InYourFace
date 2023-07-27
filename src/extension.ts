@@ -197,77 +197,77 @@ class CustomSidebarViewProvider implements vscode.WebviewViewProvider {
     };
 
     // default webview will show doom face 0
-    webviewView.webview.html = this.getHtmlContent0(webviewView.webview);
+    webviewView.webview.html = this.getHtmlContent(webviewView.webview, false);
 
     // This is called every second is decides which doom face to show in the webview
     setInterval(() => {
-      let errors = getNumErrors();
-      if (errors === 0) {
-        webviewView.webview.html = this.getHtmlContent0(webviewView.webview);
-      } else if (errors < 5) {
-        webviewView.webview.html = this.getHtmlContent1(webviewView.webview);
-      } else if (errors < 10) {
-        webviewView.webview.html = this.getHtmlContent2(webviewView.webview);
-      } else {
-        webviewView.webview.html = this.getHtmlContent3(webviewView.webview);
-      }
+      webviewView.webview.html = this.getHtmlContent(webviewView.webview, true);
+      
     }, 1000);
   }
 
-  // This is doom face 0
-  private getHtmlContent0(webview: vscode.Webview): string {
-    const stylesheetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
-    );
+  private getHtmlContent(webview: vscode.Webview, flag:boolean): string {
 
-    const face0 = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible0.png")
-    );
+    let errorFace:any;
+    let warningFace:any;
 
-    return getHtml(face0);
-  }
-
-  // This is doom face 1
-  private getHtmlContent1(webview: vscode.Webview): string {
-    const stylesheetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
-    );
-
-    const face1 = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible1.png")
-    );
-
-    return getHtml(face1);
-  }
-
-  // This is doom face 2
-  private getHtmlContent2(webview: vscode.Webview): string {
-    const stylesheetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
-    );
-
-    const face2 = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible2.png")
-    );
-
-    return getHtml(face2);
-  }
-
-  // This is doom face 3
-  private getHtmlContent3(webview: vscode.Webview): string {
-    const stylesheetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "main.css")
-    );
-
-    const face3 = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "assets", "incredible3.png")
-    );
-
-    return getHtml(face3);
-  }
+    let errors = getNumErrAndWarn()[0];
+    let warnings = getNumErrAndWarn()[1];
+    
+    //Condition to check if function is called for first time or not. 
+    if(!flag){
+      errorFace = webview.asWebviewUri(
+        vscode.Uri.joinPath(this._extensionUri, "assets", "incredible0.png")
+        );
+      warningFace = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "assets", "incredible0.png"));
+    }
+    else{
+      if(errors===0){
+        errorFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible0.png")
+          );
+      }
+      else if(errors<5){
+        errorFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible1.png")
+          );
+      }
+      else if(errors<10){
+        errorFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible2.png")
+          );
+      }
+      else{
+        errorFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible3.png")
+          );
+      }
+      if(warnings===0){
+        warningFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible0.png")
+          );
+      }
+      else if(warnings<5){
+        warningFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible1.png")
+          );
+      }
+      else if(warnings<10){
+        warningFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible2.png")
+          );
+      }
+      else{
+        warningFace = webview.asWebviewUri(
+          vscode.Uri.joinPath(this._extensionUri, "assets", "incredible3.png")
+          );
+      }
+    }
+	  return getHtml(errorFace, warningFace);
+	}
 }
 
-function getHtml(doomFace: any) {
+function getHtml(incredibleErrorFace: any, incredibleWarningFace:any) {
   return `
     <!DOCTYPE html>
 			<html lang="en">
@@ -277,8 +277,10 @@ function getHtml(doomFace: any) {
 
 			<body>
 			<section class="wrapper">
-      <img class="doomFaces" src="${doomFace}" alt="" >
-      <h1 id="errorNum">${getNumErrors() + " errors"}</h1>
+      <img class="doomFaces" src="${incredibleErrorFace}" alt="" >
+      <h1 id="errorNum">${getNumErrAndWarn()[0] + " errors"}</h1>
+      <img class="doomFaces" src="${incredibleWarningFace}" alt="" >
+      <h1 id="errorNum">${getNumErrAndWarn()[1] + " warnings"}</h1>
 			</section>
       </body>
 
@@ -286,18 +288,19 @@ function getHtml(doomFace: any) {
   `;
 }
 
-// function to get the number of errors in the open file
-function getNumErrors(): number {
+// function to get the number of errors and warnings in the open file
+function getNumErrAndWarn(): number[] {
   const activeTextEditor: vscode.TextEditor | undefined =
     vscode.window.activeTextEditor;
+    let numErrors = 0;
+    let numWarnings = 0;
+    let numErrandWarn:number[] = [];
   if (!activeTextEditor) {
-    return 0;
+    numErrandWarn[0] = numErrors;
+    numErrandWarn[1] = numWarnings;
+    return numErrandWarn;
   }
   const document: vscode.TextDocument = activeTextEditor.document;
-
-  let numErrors = 0;
-  let numWarnings = 0;
-
   let aggregatedDiagnostics: any = {};
   let diagnostic: vscode.Diagnostic;
 
@@ -330,7 +333,11 @@ function getNumErrors(): number {
     }
   }
 
-  return numErrors;
+  
+  numErrandWarn[0] = numErrors;
+  numErrandWarn[1] = numWarnings;
+
+  return numErrandWarn;
 }
 
 // this method is called when your extension is deactivated
